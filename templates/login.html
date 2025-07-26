@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Table</title>
+    <style>
+        .contenor {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            background-color: rgb(56, 54, 54);
+            height: 50vh;
+            width: 50vw;
+            color: white;
+            overflow-y: auto;
+            flex-direction: column;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .input {
+            padding: 10px;
+            border-radius: 9px;
+            border: none;
+            margin-bottom: 10px;
+        }
+
+        #submit, .delete-btn {
+            border-radius: 10px;
+            height: 30px;
+            cursor: pointer;
+            padding: 5px 15px;
+            border: none;
+        }
+
+        #submit:hover, .delete-btn:hover {
+            background-color: black;
+            color: white;
+        }
+
+        table {
+            width: 60%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            color: black;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        th {
+            background-color: lightgreen;
+        }
+
+        td {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <form action="/" method="POST">
+        <div class="contenor">
+            <input type="text" class="input" name="email" placeholder="Enter your Name" required>
+            <input type="text" class="input" name="password" placeholder="Enter your Feedback" required>
+            <input type="submit" id="submit" value="Submit">
+        </div>
+    </form>
+
+    <div>
+        <table>
+            <tr>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Action</th>
+            </tr>
+            {% for read in data %}
+            <tr>
+                <td>{{ read.email }}</td>
+                <td>{{ read.password }}</td>
+                <td>
+                    <a href="/delete/{{ read.id }}">
+                        <button class="delete-btn">Delete</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
